@@ -1,0 +1,720 @@
+--- a/src/components/SplitChoice.astro	2026-08-24 07:37:26.000000000 +0000
++++ b/src/components/SplitChoice.astro	2026-08-24 07:43:45.339718990 +0000
+@@ -6,16 +6,24 @@
+ ---
+ <section class="split" aria-label="Yumiko's practices">
+   <a href="/education" class="panel education">
+-    <span class="eyebrow">Inclusive Education</span>
+-
+-    <h2>Learning without fear.</h2>
++    <span class="background-mark" aria-hidden="true">01</span>
++    <div class="panel-content">
++      <span class="eyebrow">Inclusive education</span>
++
++      <h2>Learning without fear.</h2>
++
++      <p class="lead">
++        Gender basics, pronouns, and the everyday work of becoming a better ally —
++        without expecting anyone to get everything right on the first try.
++      </p>
+ 
+-    <p>
+-      Workshops, presentations, and consulting that create space to ask questions,
+-      make mistakes, and grow.
+-    </p>
++      <div class="teaching-note">
++        <span class="note-label">A place to start</span>
++        <p>Ask questions. Make mistakes. Learn what to do next.</p>
++      </div>
+ 
+-    <span class="panel-link">Explore education <span aria-hidden="true">↗</span></span>
++      <span class="panel-link">Explore education <span aria-hidden="true">↗</span></span>
++    </div>
+   </a>
+ 
+   <a href="/photography" class="panel photography">
+@@ -36,7 +44,6 @@
+         alt="A photograph from Yumiko's collection"
+         loading="eager"
+       />
+-      <figcaption>one photograph, changing daily</figcaption>
+     </figure>
+   </a>
+ </section>
+@@ -63,8 +70,8 @@
+ <style>
+ .split {
+   display: grid;
+-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+-  min-height: 90vh;
++  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
++  min-height: 88vh;
+   gap: 1px;
+   background: var(--color-line);
+ }
+@@ -79,11 +86,11 @@
+   text-decoration: none;
+   color: inherit;
+   overflow: hidden;
+-  transition: transform 0.3s ease, background 0.3s ease;
++  transition: transform 0.3s ease;
+ }
+ 
+ .panel:hover {
+-  transform: translateY(-4px);
++  transform: translateY(-3px);
+ }
+ 
+ .education {
+@@ -95,10 +102,30 @@
+   color: white;
+ }
+ 
++.panel-content,
++.photo-copy,
++.photo-frame {
++  position: relative;
++  z-index: 1;
++}
++
++.background-mark {
++  position: absolute;
++  right: -0.04em;
++  top: 50%;
++  transform: translateY(-50%);
++  font-size: clamp(14rem, 28vw, 30rem);
++  line-height: 0.7;
++  font-weight: 800;
++  letter-spacing: -0.09em;
++  color: rgba(29, 29, 29, 0.035);
++  user-select: none;
++}
++
+ .eyebrow {
+   text-transform: uppercase;
+   letter-spacing: 0.15em;
+-  font-size: 0.78rem;
++  font-size: 0.76rem;
+   font-weight: 650;
+   margin-bottom: 1rem;
+ }
+@@ -112,12 +139,39 @@
+ 
+ p {
+   max-width: 31rem;
+-  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
++  font-size: clamp(1.1rem, 1.45vw, 1.3rem);
+   line-height: 1.55;
+ }
+ 
+-.panel-link {
++.lead {
++  margin: 0;
++}
++
++.teaching-note {
++  max-width: 29rem;
+   margin-top: 2.5rem;
++  padding-top: 1.25rem;
++  border-top: 1px solid var(--color-line);
++}
++
++.teaching-note .note-label {
++  display: block;
++  margin-bottom: 0.45rem;
++  color: var(--color-muted);
++  font-size: 0.72rem;
++  letter-spacing: 0.12em;
++  text-transform: uppercase;
++}
++
++.teaching-note p {
++  margin: 0;
++  font-size: 1rem;
++  line-height: 1.5;
++}
++
++.panel-link {
++  display: inline-block;
++  margin-top: 2.25rem;
+   font-weight: 650;
+   font-size: 1rem;
+ }
+@@ -126,9 +180,12 @@
+   margin-bottom: 2rem;
+ }
+ 
++.photo-copy p {
++  color: rgba(255, 255, 255, 0.76);
++}
++
+ .photo-frame {
+   margin: 0;
+-  position: relative;
+ }
+ 
+ .photo-frame img {
+@@ -138,19 +195,12 @@
+   display: block;
+   border-radius: var(--radius-lg);
+   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+-  transition: transform 0.5s ease;
++  transition: transform 0.5s ease, filter 0.5s ease;
+ }
+ 
+ .panel:hover .photo-frame img {
+   transform: scale(1.012);
+-}
+-
+-figcaption {
+-  margin-top: 0.75rem;
+-  color: rgba(255, 255, 255, 0.58);
+-  font-size: 0.75rem;
+-  letter-spacing: 0.08em;
+-  text-transform: uppercase;
++  filter: contrast(1.03);
+ }
+ 
+ :global(.panel:focus-visible) {
+@@ -166,6 +216,10 @@
+   .panel {
+     min-height: auto;
+   }
++
++  .background-mark {
++    font-size: 12rem;
++  }
+ }
+ 
+ @media (prefers-reduced-motion: reduce) {
+--- a/src/pages/education/index.astro	2026-08-10 05:35:37.000000000 +0000
++++ b/src/pages/education/index.astro	2026-08-24 07:43:45.340765043 +0000
+@@ -3,206 +3,394 @@
+ ---
+ 
+ <Layout title="Inclusive Education | Yumiko">
++  <main class="education-page">
++    <header class="education-hero">
++      <div class="hero-index">01 / inclusive education</div>
++      <h1>Learning without<br /><em>fear.</em></h1>
++      <p class="hero-intro">
++        Gender education for people who want to understand more, ask better questions,
++        and feel less afraid of getting it wrong.
++      </p>
++    </header>
+ 
+-<section class="education">
+-
+-  <h1>Inclusive Education</h1>
+-
+-  <p class="intro">
+-    Creating spaces where people feel seen,
+-    respected, and confident.
+-  </p>
+-
+-  <section>
+-
+-    <h2>Services</h2>
+-
+-    <div class="services">
+-
+-      <a href="/education/speaking" class="service">
+-        <h3>Speaking</h3>
+-        <p>
+-          Keynotes, panels, and presentations centered on
+-          inclusion, belonging, and lived experience.
+-        </p>
+-      </a>
+-
+-      <a href="/education/workshops" class="service">
+-        <h3>Workshops</h3>
++    <section class="statement">
++      <p class="statement-kicker">What Yumiko teaches</p>
++      <div class="statement-copy">
+         <p>
+-          Interactive learning experiences designed to
+-          encourage reflection and practical change.
++          Gender basics. Pronoun use. Expanding our understanding of gender. And how to
++          fuck up — because mistakes are part of learning, not a reason to stop trying.
+         </p>
+-      </a>
++      </div>
++    </section>
+ 
+-      <a href="/education/consulting" class="service">
+-        <h3>Consulting</h3>
++    <section class="services-section">
++      <div class="section-heading">
++        <span>Ways to work together</span>
++        <span>02</span>
++      </div>
++
++      <div class="services">
++        <a href="/education/speaking" class="service">
++          <span class="service-number">01</span>
++          <div>
++            <h2>Speaking</h2>
++            <p>
++              Keynotes, panels, and presentations that make room for lived experience,
++              honest questions, and a more expansive understanding of gender.
++            </p>
++          </div>
++          <span class="arrow" aria-hidden="true">↗</span>
++        </a>
++
++        <a href="/education/workshops" class="service">
++          <span class="service-number">02</span>
++          <div>
++            <h2>Workshops</h2>
++            <p>
++              Interactive sessions where people can practice new skills, talk through
++              uncertainty, and leave with something they can actually use.
++            </p>
++          </div>
++          <span class="arrow" aria-hidden="true">↗</span>
++        </a>
++
++        <a href="/education/consulting" class="service">
++          <span class="service-number">03</span>
++          <div>
++            <h2>Consulting</h2>
++            <p>
++              Thoughtful guidance for organizations and teams working toward more
++              inclusive communication, policies, and everyday practices.
++            </p>
++          </div>
++          <span class="arrow" aria-hidden="true">↗</span>
++        </a>
++      </div>
++    </section>
++
++    <section class="topics">
++      <div class="topics-image" aria-hidden="true">
++        <div class="image-placeholder">photograph<br />coming soon</div>
++      </div>
++      <div class="topics-copy">
++        <span class="section-label">03 / start somewhere</span>
++        <h2>You don't have to know everything.</h2>
+         <p>
+-          Collaborative guidance for organizations seeking
+-          more inclusive policies and practices.
++          A lot of people arrive worried about saying the wrong thing — or about
++          misgendering someone and making things worse. Yumiko's work starts from a
++          different place: curiosity, humility, and a willingness to keep learning.
+         </p>
+-      </a>
+-
+-    </div>
+-
+-  </section>
+-
+-  <section>
+-
+-    <h2>Featured Resource</h2>
+-
+-    <div class="feature">
+-
+-      <h3>Inclusive Language Guide</h3>
+-
++        <ul>
++          <li>Using and asking about pronouns</li>
++          <li>Understanding gender beyond the basics</li>
++          <li>Responding when you make a mistake</li>
++          <li>Building confidence through practice</li>
++        </ul>
++      </div>
++    </section>
++
++    <section class="resource">
++      <div>
++        <span class="section-label">04 / resource</span>
++        <h2>A growing library of useful things.</h2>
++      </div>
+       <p>
+-        A practical resource for building more welcoming
+-        conversations and environments.
++        Guides, notes, and practical resources will live here as Yumiko's teaching
++        library grows.
+       </p>
++    </section>
+ 
+-    </div>
+-
+-  </section>
+-
+-  <section>
+-
+-    <h2>Testimonials</h2>
+-
+-    <blockquote>
+-      "A testimonial will eventually go here."
+-    </blockquote>
+-
+-    <blockquote>
+-      "they cured my hiccups and avenged my family!"
+-    </blockquote>
+-
+-  </section>
+-
+-  <section class="cta">
+-
+-    <h2>Let's work together.</h2>
++    <section class="testimonials">
++      <div class="section-heading">
++        <span>What people say</span>
++        <span>05</span>
++      </div>
++      <div class="testimonial-placeholder">
++        <p>Testimonials coming soon.</p>
++        <span>Space reserved for participant and client reflections.</span>
++      </div>
++    </section>
++
++    <section class="cta">
++      <span class="section-label">06 / get in touch</span>
++      <h2>Let's make room<br /><em>to learn.</em></h2>
++      <a href="/contact">Start a conversation <span aria-hidden="true">↗</span></a>
++    </section>
++  </main>
++</Layout>
+ 
+-    <a href="/contact">
+-      Get in touch &rarr;
+-    </a>
++<style>
++.education-page {
++  max-width: 1180px;
++  margin: 0 auto;
++  padding: 0 2rem 8rem;
++}
+ 
+-  </section>
++.education-hero {
++  min-height: 78vh;
++  padding: clamp(5rem, 11vw, 9rem) 0 6rem;
++  display: flex;
++  flex-direction: column;
++  justify-content: center;
++}
+ 
+-</section>
++.hero-index,
++.section-label,
++.section-heading,
++.statement-kicker {
++  text-transform: uppercase;
++  letter-spacing: 0.14em;
++  font-size: 0.72rem;
++  font-weight: 650;
++  color: var(--color-muted);
++}
+ 
+-</Layout>
++.hero-index {
++  margin-bottom: 2.5rem;
++}
+ 
+-<style>
++.education-hero h1 {
++  max-width: none;
++  font-size: clamp(4.8rem, 12vw, 10.5rem);
++  line-height: 0.82;
++  letter-spacing: -0.07em;
++}
+ 
+-.education {
+-  max-width: 1000px;
+-  margin: 5rem auto;
+-  padding: 0 2rem;
++.education-hero h1 em,
++.cta h2 em {
++  font-family: Georgia, "Times New Roman", serif;
++  font-weight: 400;
++  letter-spacing: -0.055em;
+ }
+ 
+-.intro {
+-  max-width: 60ch;
+-  font-size: 1.2rem;
+-  line-height: 1.8;
+-  margin-bottom: 4rem;
++.hero-intro {
++  max-width: 38rem;
++  margin: 3rem 0 0 auto;
++  font-size: clamp(1.2rem, 2vw, 1.55rem);
++  line-height: 1.55;
+ }
+ 
+-.education section {
+-  margin-top: 5rem;
++.statement {
++  display: grid;
++  grid-template-columns: 0.8fr 2fr;
++  gap: 3rem;
++  padding: 6rem 0;
++  border-top: 1px solid var(--color-line);
++  border-bottom: 1px solid var(--color-line);
++}
++
++.statement-copy p {
++  max-width: 48rem;
++  margin: 0;
++  font-size: clamp(2rem, 4vw, 3.6rem);
++  line-height: 1.08;
++  letter-spacing: -0.04em;
++}
++
++.services-section {
++  padding: 7rem 0 5rem;
++}
++
++.section-heading {
++  display: flex;
++  justify-content: space-between;
++  padding-bottom: 1rem;
++  border-bottom: 1px solid var(--color-line);
+ }
+ 
+ .services {
++  border-bottom: 1px solid var(--color-line);
++}
++
++.service {
+   display: grid;
+-  grid-template-columns: repeat(3, 1fr);
++  grid-template-columns: 4rem minmax(0, 1fr) 2rem;
+   gap: 2rem;
++  align-items: start;
++  padding: 2.75rem 0;
++  border-top: 1px solid var(--color-line);
++  transition: padding 0.25s ease;
+ }
+ 
+-.service {
+-  display: block;
++.service:first-child {
++  border-top: 0;
++}
+ 
+-  padding: 2rem;
++.service:hover {
++  padding-left: 1rem;
++  padding-right: 1rem;
++}
+ 
+-  border: 1px solid #ececec;
+-  border-radius: .75rem;
++.service-number {
++  color: var(--color-muted);
++  font-size: 0.75rem;
++  letter-spacing: 0.1em;
++  padding-top: 0.45rem;
++}
+ 
+-  text-decoration: none;
+-  color: inherit;
++.service h2 {
++  margin: 0 0 0.75rem;
++  font-size: clamp(2rem, 4vw, 3.5rem);
++  letter-spacing: -0.045em;
++}
+ 
+-  transition:
+-    transform .2s ease,
+-    border-color .2s ease;
++.service p {
++  max-width: 42rem;
++  margin: 0;
++  font-size: 1.05rem;
++  line-height: 1.65;
+ }
+ 
+-.service:hover {
+-  transform: translateY(-4px);
+-  border-color: var(--color-plum);
++.arrow {
++  font-size: 1.4rem;
++  padding-top: 0.25rem;
+ }
+-.service:nth-child(1) {
+-  border-color: var(--color-lavender);
++
++.topics {
++  display: grid;
++  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
++  gap: 5rem;
++  padding: 7rem 0;
++  align-items: center;
+ }
+ 
+-.service:nth-child(2) {
+-  border-color: var(--color-pink);
++.topics-image {
++  min-height: 38rem;
++  display: grid;
++  place-items: center;
++  background: #e5e2dc;
++  overflow: hidden;
+ }
+ 
+-.service:nth-child(3) {
+-  border-color: var(--color-seafoam);
++.image-placeholder {
++  color: #8b8881;
++  font-size: 0.72rem;
++  letter-spacing: 0.14em;
++  text-transform: uppercase;
++  text-align: center;
+ }
+ 
+-.service:nth-child(1) h3 {
+-  color: var(--color-plum);
++.topics-copy h2,
++.resource h2 {
++  margin: 1.5rem 0;
++  max-width: 11ch;
++  font-size: clamp(2.8rem, 5vw, 5rem);
++  line-height: 0.95;
++  letter-spacing: -0.055em;
+ }
+ 
+-.service:nth-child(2) h3 {
+-  color: #c44b7a;
++.topics-copy > p,
++.resource > p {
++  margin: 0;
++  max-width: 35rem;
++  font-size: 1.15rem;
++  line-height: 1.7;
+ }
+ 
+-.service:nth-child(3) h3 {
+-  color: #287a68;
++.topics ul {
++  margin: 2rem 0 0;
++  padding: 0;
++  list-style: none;
++  border-top: 1px solid var(--color-line);
+ }
+ 
+-.feature {
+-  border-color: var(--color-yellow);
+-  background: #fffbea;
++.topics li {
++  padding: 0.85rem 0;
++  border-bottom: 1px solid var(--color-line);
++  font-size: 0.95rem;
+ }
+ 
+-.cta {
+-  padding-block: 4rem;
++.topics li::before {
++  content: "—";
++  margin-right: 0.75rem;
++  color: var(--color-muted);
+ }
+ 
+-.cta h2 {
+-  color: var(--color-plum);
++.resource {
++  display: grid;
++  grid-template-columns: 1.2fr 0.8fr;
++  gap: 5rem;
++  padding: 5rem 0;
++  border-top: 1px solid var(--color-line);
++  border-bottom: 1px solid var(--color-line);
+ }
+-.feature {
+-  padding: 2rem;
+ 
+-  border: 1px solid #ececec;
+-  border-radius: .75rem;
++.testimonials {
++  padding: 7rem 0;
+ }
+ 
+-blockquote {
+-  margin: 2rem 0;
+-  padding-left: 1rem;
++.testimonial-placeholder {
++  margin-top: 4rem;
++  padding: 4rem 0;
++  border-bottom: 1px solid var(--color-line);
++}
+ 
+-  border-left: 3px solid #ddd;
++.testimonial-placeholder p {
++  margin: 0 0 0.5rem;
++  font-family: Georgia, "Times New Roman", serif;
++  font-size: clamp(2rem, 4vw, 3.5rem);
++  line-height: 1.1;
++}
+ 
+-  font-style: italic;
++.testimonial-placeholder span {
++  color: var(--color-muted);
++  font-size: 0.85rem;
+ }
+ 
+ .cta {
+-  text-align: center;
++  padding: 8rem 0 3rem;
++}
++
++.cta h2 {
++  margin: 1.5rem 0 2.5rem;
++  max-width: 12ch;
++  font-size: clamp(4rem, 10vw, 8rem);
++  line-height: 0.86;
++  letter-spacing: -0.07em;
+ }
+ 
+ .cta a {
+-  text-decoration: none;
++  display: inline-flex;
++  gap: 0.6rem;
++  align-items: center;
++  font-weight: 650;
++  border-bottom: 1px solid currentColor;
++  padding-bottom: 0.4rem;
+ }
+ 
+ @media (max-width: 800px) {
++  .education-page {
++    padding-inline: 1.25rem;
++  }
+ 
+-  .services {
++  .education-hero {
++    min-height: 70vh;
++  }
++
++  .statement,
++  .topics,
++  .resource {
+     grid-template-columns: 1fr;
++    gap: 2.5rem;
++  }
++
++  .statement-copy p {
++    font-size: 2.2rem;
++  }
++
++  .service {
++    grid-template-columns: 2.5rem minmax(0, 1fr) 1.5rem;
++    gap: 1rem;
+   }
+ 
++  .topics-image {
++    min-height: 24rem;
++  }
+ }
+ 
+-</style>
+\ No newline at end of file
++@media (prefers-reduced-motion: reduce) {
++  .service {
++    transition: none;
++  }
++}
++</style>

@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About | Yumiko">
+
+<section class="about">
+
+  <h1>About</h1>
+
+  <div class="content">
+
+    <div class="portrait">
+      <img
+        src="/images/0022_22A.jpg"
+        alt="Portrait of Yumiko"
+      />
+    </div>
+
+    <div class="text">
+
+      <p>
+I'm Yumiko Noriyuki (they/them), a multidisciplinary artist based in Eugene, Oregon. Through photography, I explore both the struggles and the gifts of living between cultures. Working primarily with 120 and 35mm film, I create portraits of friends and loved ones alongside images of places that have left a lasting imprint. My work is rooted in intimacy and lived experience, exploring community, memory, belonging, and the quiet beauty found in everyday life.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</Layout>
+
+<style>
+.about {
+  max-width: 1000px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.about h1 {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.portrait img {
+  width: 100%;
+  display: block;
+  border-radius: .5rem;
+}
+
+.text {
+  max-width: 60ch;
+}
+
+.text p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+}
+</style>

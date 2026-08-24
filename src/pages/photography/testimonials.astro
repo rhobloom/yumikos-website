@@ -1,0 +1,132 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Photography Testimonials | Yumiko">
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">04 / photography</span>
+      <h1>How it felt<br /><em>to be seen.</em></h1>
+      <p>
+        A space for reflections from people, artists, organizations, and clients
+        who have invited Yumiko into their stories.
+      </p>
+    </header>
+
+    <section class="quotes">
+      <blockquote>
+        <p>“A placeholder for a portrait client's reflection.”</p>
+        <footer>Client name · Portrait session</footer>
+      </blockquote>
+
+      <blockquote>
+        <p>“A placeholder for an organization's reflection on documentary coverage.”</p>
+        <footer>Client name · Organization</footer>
+      </blockquote>
+
+      <blockquote>
+        <p>“A placeholder for an artist or creative collaborator.”</p>
+        <footer>Client name · Creative project</footer>
+      </blockquote>
+    </section>
+
+    <section class="closing">
+      <span class="eyebrow">05 / your project</span>
+      <h2>Let's make<br /><em>something real.</em></h2>
+      <a href="/contact">Get in touch <span class="arrow"></span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+.hero {
+  min-height: 68vh;
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.hero h1 {
+  margin: 2rem 0 3rem;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: .84;
+  letter-spacing: -.075em;
+}
+
+.hero h1 em,
+.closing h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+.quotes {
+  border-top: 1px solid var(--color-line);
+}
+
+blockquote {
+  margin: 0;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+blockquote p {
+  max-width: 55rem;
+  margin: 0 0 2rem;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+}
+
+blockquote footer {
+  color: var(--color-muted);
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.closing {
+  padding: 9rem 0 2rem;
+}
+
+.closing h2 {
+  margin: 2rem 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.closing a {
+  font-weight: 700;
+}
+
+.arrow {
+  display: inline-block;
+  width: 1rem;
+  height: .8rem;
+  margin-left: .6rem;
+  background: currentColor;
+  clip-path: polygon(0 43%,68% 43%,68% 8%,100% 50%,68% 92%,68% 57%,0 57%);
+}
+</style>

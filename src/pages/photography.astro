@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PhotoPreview from "../components/PhotoPreview";
+import { photos } from "../data/photos";
+import { projects } from "../data/projects";
+---
+
+<Layout title="Photography | Yumiko">
+
+  <section class="intro">
+
+    <h1>
+      Photography
+    </h1>
+
+    <p>
+      Ordinary beauty, spirit made visible,
+      and quiet revelations of joy, resistance,
+      and becoming.
+    </p>
+
+  </section>
+
+  <PhotoPreview
+    client:load
+    photos={photos}
+    projects={projects}
+  />
+
+</Layout>
+
+<style>
+.intro {
+  max-width: 700px;
+  margin: 5rem auto 4rem;
+  padding: 0 1.5rem;
+
+  text-align: center;
+}
+
+.intro h1 {
+  max-width: none;
+  margin: 0 auto 1rem;
+}
+
+.intro p {
+  color: #666;
+}
+</style>

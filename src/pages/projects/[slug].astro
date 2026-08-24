@@ -1,0 +1,47 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { projects } from "../../data/projects";
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: {
+      slug: project.slug,
+    },
+    props: {
+      project,
+    },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={project.title}>
+  <main class="gallery">
+
+    <h1>{project.title}</h1>
+
+    {project.images.map((image) => (
+      <img
+        src={image}
+        alt=""
+      />
+    ))}
+
+  </main>
+</Layout>
+
+<style>
+.gallery {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 8rem;
+}
+
+.gallery img {
+  width: 100%;
+  display: block;
+
+  margin-bottom: 3rem;
+}
+</style>

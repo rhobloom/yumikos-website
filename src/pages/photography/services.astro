@@ -1,0 +1,169 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Photography Services | Yumiko">
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">03 / photography</span>
+      <h1>Pictures of<br /><em>real life.</em></h1>
+      <p>
+        Photography for people, places, events, stories, and projects that deserve
+        to be seen with attention.
+      </p>
+    </header>
+
+    <section class="services">
+      <article>
+        <span>01 / Portraits</span>
+        <h2>People as themselves.</h2>
+        <p>
+          Portrait sessions that leave room for personality, movement, awkwardness,
+          joy, and all the things that make a photograph feel like a person rather
+          than a pose.
+        </p>
+      </article>
+
+      <article>
+        <span>02 / Events</span>
+        <h2>What happened while everyone was busy living it.</h2>
+        <p>
+          Documentary-minded coverage for gatherings, celebrations, performances,
+          community events, and other moments where the atmosphere matters as much
+          as the official record.
+        </p>
+      </article>
+
+      <article>
+        <span>03 / Editorial & creative</span>
+        <h2>Images with a point of view.</h2>
+        <p>
+          Collaborative photography for publications, artists, organizations,
+          campaigns, and creative projects.
+        </p>
+      </article>
+    </section>
+
+    <section class="closing">
+      <span class="eyebrow">04 / commissions</span>
+      <h2>Tell me<br /><em>what you're making.</em></h2>
+      <p>
+        Every project is different. Share what you're working on, what you need,
+        and what you hope the photographs feel like.
+      </p>
+      <a href="/contact">Start a conversation <span class="arrow"></span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+.hero {
+  min-height: 68vh;
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow,
+.services article > span {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.hero h1 {
+  margin: 2rem 0 3rem;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: .84;
+  letter-spacing: -.075em;
+}
+
+.hero h1 em,
+.closing h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+.services {
+  border-top: 1px solid var(--color-line);
+}
+
+.services article {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 3rem;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.services h2 {
+  max-width: 15ch;
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: .9;
+  letter-spacing: -.06em;
+}
+
+.services p {
+  max-width: 42rem;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.closing {
+  padding: 9rem 0 2rem;
+}
+
+.closing h2 {
+  margin: 2rem 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.closing p {
+  max-width: 36rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.closing a {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 1.5rem;
+  font-weight: 700;
+}
+
+.arrow {
+  width: 1rem;
+  height: .8rem;
+  display: inline-block;
+  background: currentColor;
+  clip-path: polygon(0 43%,68% 43%,68% 8%,100% 50%,68% 92%,68% 57%,0 57%);
+}
+
+@media (max-width: 700px) {
+  .services article {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+</style>

@@ -1,0 +1,236 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact | Yumiko">
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">05 / contact</span>
+      <h1>Let's start<br /><em>somewhere.</em></h1>
+      <p>
+        Whether you're looking for a speaker, educator, photographer, collaborator,
+        or simply want to ask a question, you're welcome here.
+      </p>
+    </header>
+
+    <section class="contact-grid">
+      <div class="contact-intro">
+        <span class="label">What can we talk about?</span>
+        <ul>
+          <li>Inclusive education & workshops</li>
+          <li>Speaking & presentations</li>
+          <li>Organizational consulting</li>
+          <li>Portrait photography</li>
+          <li>Events & documentary photography</li>
+          <li>Creative collaborations</li>
+          <li>Something else entirely</li>
+        </ul>
+      </div>
+
+      <form class="form" action="#" method="post">
+        <label>
+          Name
+          <input type="text" name="name" autocomplete="name" />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" />
+        </label>
+
+        <label>
+          What are you reaching out about?
+          <select name="topic">
+            <option value="">Choose one</option>
+            <option>Inclusive education</option>
+            <option>Speaking or workshops</option>
+            <option>Consulting</option>
+            <option>Photography</option>
+            <option>Creative collaboration</option>
+            <option>Something else</option>
+          </select>
+        </label>
+
+        <label>
+          Tell me a little more
+          <textarea name="message" rows="7"></textarea>
+        </label>
+
+        <button type="submit">Send inquiry <span class="arrow"></span></button>
+
+        <p class="form-note">
+          The contact form will be connected to Yumiko's preferred email service
+          before launch.
+        </p>
+      </form>
+    </section>
+
+    <section class="direct">
+      <span class="eyebrow">Prefer email?</span>
+      <h2>Email address<br /><em>coming soon.</em></h2>
+      <p>
+        A direct email address will be added here once the site's public contact
+        information is finalized.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+.hero {
+  min-height: 68vh;
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow,
+.label {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.hero h1 {
+  margin: 2rem 0 3rem;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: .84;
+  letter-spacing: -.075em;
+}
+
+.hero h1 em,
+.direct h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 6rem;
+  padding: 6rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.contact-intro ul {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-intro li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 1.05rem;
+}
+
+.form {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.form label {
+  display: grid;
+  gap: .6rem;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 700;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 1rem;
+  font: inherit;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: normal;
+  outline: none;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: var(--color-text);
+}
+
+.form button {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: white;
+  padding: 1rem 1.5rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.form-note {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
+.arrow {
+  width: 1rem;
+  height: .8rem;
+  display: inline-block;
+  background: currentColor;
+  clip-path: polygon(0 43%,68% 43%,68% 8%,100% 50%,68% 92%,68% 57%,0 57%);
+}
+
+.direct {
+  padding: 8rem 0 2rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.direct h2 {
+  margin: 2rem 0;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: .86;
+  letter-spacing: -.07em;
+}
+
+.direct p {
+  max-width: 36rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 750px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+</style>

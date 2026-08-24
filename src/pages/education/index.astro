@@ -1,0 +1,558 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { photos } from "../../data/photos";
+
+const educationPhotos = photos.slice(0, 3);
+---
+
+<Layout title="Inclusive Education | Yumiko">
+  <main class="education-page">
+    <header class="education-hero">
+      <div class="hero-meta">
+        <span>01</span>
+        <span>Inclusive education</span>
+      </div>
+
+      <div class="hero-grid">
+        <h1>Learning<br /><em>without fear.</em></h1>
+
+        <div class="hero-copy">
+          <p>
+            Gender education for people who want to understand more, ask better
+            questions, and feel less afraid of getting it wrong.
+          </p>
+
+          <a class="text-link" href="#ways">
+            Explore the work
+            <span class="arrow" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="statement">
+      <div class="section-label">
+        <span>02</span>
+        <span>What Yumiko teaches</span>
+      </div>
+
+      <div class="statement-content">
+        <p>
+          Gender basics. Pronoun use. Expanding our understanding of gender.
+          And how to fuck up - because mistakes are part of learning, not a
+          reason to stop trying.
+        </p>
+
+        <div class="statement-note">
+          <span>A place to start</span>
+          <p>Ask questions. Make mistakes. Learn what to do next.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ways" id="ways">
+      <div class="section-heading">
+        <span>Ways to work together</span>
+        <span>03</span>
+      </div>
+
+      <div class="service-grid">
+        <a href="/education/services/speaking" class="service service-lavender">
+          <span class="service-number">01</span>
+          <div class="service-body">
+            <span class="service-type">Speaking</span>
+            <h2>Make room<br />for questions.</h2>
+            <p>
+              Keynotes, panels, and presentations that make room for lived
+              experience, honest questions, and a more expansive understanding
+              of gender.
+            </p>
+          </div>
+          <span class="service-arrow" aria-hidden="true"></span>
+        </a>
+
+        <a href="/education/services/workshops" class="service service-yellow">
+          <span class="service-number">02</span>
+          <div class="service-body">
+            <span class="service-type">Workshops</span>
+            <h2>Practice<br />something new.</h2>
+            <p>
+              Interactive sessions where people can practice new skills, talk
+              through uncertainty, and leave with something they can actually
+              use.
+            </p>
+          </div>
+          <span class="service-arrow" aria-hidden="true"></span>
+        </a>
+
+        <a href="/education/services/consulting" class="service service-pink">
+          <span class="service-number">03</span>
+          <div class="service-body">
+            <span class="service-type">Consulting</span>
+            <h2>Turn good<br />intentions into practice.</h2>
+            <p>
+              Thoughtful guidance for organizations and teams working toward
+              more inclusive communication, policies, and everyday practices.
+            </p>
+          </div>
+          <span class="service-arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="start">
+      <div class="start-image">
+        {educationPhotos[0] && (
+          <img
+            src={educationPhotos[0].image}
+            alt="Photograph from Yumiko's collection"
+            loading="lazy"
+          />
+        )}
+        <span class="image-note">01 / from the collection</span>
+      </div>
+
+      <div class="start-copy">
+        <div class="section-label">
+          <span>04</span>
+          <span>Start somewhere</span>
+        </div>
+
+        <h2>You don't have to know everything.</h2>
+
+        <p>
+          A lot of people arrive worried about saying the wrong thing - or
+          about misgendering someone and making things worse.
+        </p>
+
+        <p>
+          Yumiko's work starts from a different place: curiosity, humility,
+          and a willingness to keep learning.
+        </p>
+
+        <ul>
+          <li>Using and asking about pronouns</li>
+          <li>Understanding gender beyond the basics</li>
+          <li>Responding when you make a mistake</li>
+          <li>Building confidence through practice</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resource">
+      <div class="resource-heading">
+        <div class="section-label">
+          <span>05</span>
+          <span>Resource library</span>
+        </div>
+        <h2>Useful things<br /><em>for real life.</em></h2>
+      </div>
+
+      <div class="resource-copy">
+        <p>
+          Guides, notes, and practical resources will live here as Yumiko's
+          teaching library grows.
+        </p>
+
+        <a href="/education/resources" class="text-link">
+          Explore resources
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing-mark">06</div>
+
+      <div>
+        <span class="section-label">Get in touch</span>
+        <h2>Let's make room<br /><em>to learn.</em></h2>
+      </div>
+
+      <a href="/contact" class="closing-link">
+        Start a conversation
+        <span class="arrow" aria-hidden="true"></span>
+      </a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.education-page {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+.hero-meta,
+.section-label,
+.service-type,
+.image-note {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.hero-meta,
+.section-label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-muted);
+}
+
+.education-hero {
+  padding: clamp(4rem, 9vw, 8rem) 0 7rem;
+}
+
+.hero-meta {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 5rem;
+  align-items: end;
+  padding-top: 5rem;
+}
+
+.education-hero h1 {
+  max-width: none;
+  font-size: clamp(5rem, 11vw, 10rem);
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+}
+
+.education-hero h1 em,
+.resource h2 em,
+.closing h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.hero-copy {
+  padding-bottom: 0.7rem;
+}
+
+.hero-copy p {
+  max-width: 31rem;
+  margin: 0 0 2rem;
+  font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+  line-height: 1.5;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.3rem;
+}
+
+.arrow,
+.service-arrow {
+  display: inline-block;
+  position: relative;
+  width: 1.1rem;
+  height: 0.85rem;
+  flex: 0 0 auto;
+  background: currentColor;
+  clip-path: polygon(
+    0 43%,
+    68% 43%,
+    68% 8%,
+    100% 50%,
+    68% 92%,
+    68% 57%,
+    0 57%
+  );
+}
+
+
+.statement {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 5rem;
+  padding: 6rem 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.statement-content > p {
+  max-width: 55rem;
+  margin: 0;
+  font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+  line-height: 1.03;
+  letter-spacing: -0.055em;
+}
+
+.statement-note {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.statement-note > span {
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.statement-note p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.ways {
+  padding: 7rem 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.service {
+  min-height: 35rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--color-text);
+  transition: transform 0.25s ease;
+}
+
+.service:hover {
+  transform: translateY(-0.35rem);
+}
+
+.service-lavender {
+  background: var(--color-lavender);
+}
+
+.service-yellow {
+  background: var(--color-yellow);
+}
+
+.service-pink {
+  background: var(--color-pink);
+}
+
+.service-number {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.service-body {
+  max-width: 24rem;
+}
+
+.service-type {
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.service h2 {
+  font-size: clamp(2.5rem, 4vw, 4.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  margin-bottom: 1.75rem;
+}
+
+.service p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.service-arrow {
+  align-self: start;
+  margin-top: 0.2rem;
+}
+
+.start {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  padding: 3rem 0 8rem;
+}
+
+.start-image {
+  position: relative;
+}
+
+.start-image img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+}
+
+.image-note {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.25rem;
+  color: white;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.start-copy h2 {
+  max-width: 12ch;
+  margin: 2rem 0;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.start-copy > p {
+  max-width: 35rem;
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.start-copy ul {
+  margin: 2.5rem 0 0;
+  padding: 1.5rem 0 0 1.2rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.start-copy li {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+}
+
+.resource {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  padding: 6rem 0;
+  background: var(--color-seafoam);
+  margin-inline: -2rem;
+  padding-inline: 4rem;
+}
+
+.resource h2 {
+  margin-top: 2rem;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: 0.86;
+  letter-spacing: -0.07em;
+}
+
+.resource-copy {
+  align-self: end;
+  padding-bottom: 0.5rem;
+}
+
+.resource-copy p {
+  max-width: 30rem;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  margin: 0 0 2rem;
+}
+
+.closing {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  gap: 3rem;
+  align-items: end;
+  padding: 9rem 0 3rem;
+}
+
+.closing-mark {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.closing h2 {
+  margin-top: 1.5rem;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: 0.84;
+  letter-spacing: -0.07em;
+}
+
+.closing-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.4rem;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: white;
+  font-weight: 700;
+}
+
+@media (max-width: 850px) {
+  .hero-grid,
+  .statement,
+  .start,
+  .resource {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service {
+    min-height: 28rem;
+  }
+
+  .closing {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .resource {
+    margin-inline: -1rem;
+    padding-inline: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .education-page {
+    padding-inline: 1rem;
+  }
+
+  .education-hero {
+    padding-top: 3rem;
+  }
+
+  .hero-grid {
+    padding-top: 3rem;
+  }
+
+  .statement-note {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+</style>

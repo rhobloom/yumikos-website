@@ -1,0 +1,195 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Education Resources | Yumiko">
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">03 / resources</span>
+      <h1>Things worth<br /><em>knowing.</em></h1>
+      <p>
+        A growing collection of practical guides, notes, recommendations, and
+        starting points for people who want to understand gender more deeply.
+      </p>
+    </header>
+
+    <section class="library">
+      <div class="section-heading">
+        <span>Coming together over time</span>
+        <span>01</span>
+      </div>
+
+      <article class="resource">
+        <span class="number">01</span>
+        <div>
+          <span class="tag">Guide</span>
+          <h2>Pronouns: where to start</h2>
+          <p>
+            A practical introduction to using, asking about, and recovering from
+            mistakes with pronouns.
+          </p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+
+      <article class="resource">
+        <span class="number">02</span>
+        <div>
+          <span class="tag">Guide</span>
+          <h2>Gender beyond the basics</h2>
+          <p>
+            A place to begin when the familiar categories of gender stop being
+            quite enough to describe the people around you.
+          </p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+
+      <article class="resource">
+        <span class="number">03</span>
+        <div>
+          <span class="tag">Notes</span>
+          <h2>What to do when you get it wrong</h2>
+          <p>
+            Mistakes happen. This resource will focus on what actually helps
+            after one does.
+          </p>
+          <span class="status">Coming soon</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="invite">
+      <span class="eyebrow">04 / have something in mind?</span>
+      <h2>Learning is<br /><em>a conversation.</em></h2>
+      <p>
+        If there is a question, topic, or resource you'd like to see here,
+        get in touch.
+      </p>
+      <a href="/contact">Start a conversation <span class="arrow"></span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+.hero {
+  min-height: 68vh;
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow,
+.tag,
+.status {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.hero h1 {
+  margin: 2rem 0 3rem;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: .84;
+  letter-spacing: -.075em;
+}
+
+.hero h1 em,
+.invite h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.resource {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 3rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.number {
+  color: var(--color-muted);
+}
+
+.resource h2 {
+  margin: .75rem 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+.resource p {
+  max-width: 40rem;
+  margin: 0 0 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.status {
+  display: inline-block;
+}
+
+.invite {
+  padding: 9rem 0 2rem;
+}
+
+.invite h2 {
+  margin: 2rem 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.invite p {
+  max-width: 35rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.invite a {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 1.5rem;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: .3rem;
+}
+
+.arrow {
+  width: 1rem;
+  height: .8rem;
+  display: inline-block;
+  background: currentColor;
+  clip-path: polygon(0 43%,68% 43%,68% 8%,100% 50%,68% 92%,68% 57%,0 57%);
+}
+</style>

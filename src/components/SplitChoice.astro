@@ -1,0 +1,240 @@
+---
+import { photos } from "../data/photos";
+
+const photoPool = photos.map((photo) => photo.image);
+const firstPhoto = photoPool[0] ?? "/images/_11_0241.jpg";
+---
+<section class="split" aria-label="Yumiko's practices">
+  <a href="/education" class="panel education">
+    <span class="background-mark" aria-hidden="true">01</span>
+    <div class="panel-content">
+      <span class="eyebrow">Inclusive education</span>
+
+      <h2>Learning without fear.</h2>
+
+      <p class="lead">
+        Gender basics, pronouns, and the everyday work of becoming a better ally
+        without expecting anyone to get everything right on the first try.
+      </p>
+
+      <div class="teaching-note">
+        <span class="note-label">A place to start</span>
+        <p>Ask questions. Make mistakes. Learn what to do next.</p>
+      </div>
+
+      <span class="panel-link">Explore education <span class="css-arrow" aria-hidden="true"></span></span>
+    </div>
+  </a>
+
+  <a href="/photography" class="panel photography">
+    <div class="photo-copy">
+      <span class="eyebrow">Photography</span>
+      <h2>Photography</h2>
+      <p>
+        Film and digital photographs presented as an evolving collection of projects
+        and moments.
+      </p>
+    </div>
+
+    <figure class="photo-frame">
+      <img
+        id="daily-home-photo"
+        src={firstPhoto}
+        data-photo-pool={JSON.stringify(photoPool)}
+        alt="A photograph from Yumiko's collection"
+        loading="eager"
+      />
+    </figure>
+  </a>
+</section>
+
+<script>
+  const image = document.querySelector<HTMLImageElement>("#daily-home-photo");
+
+  if (image) {
+    try {
+      const pool = JSON.parse(image.dataset.photoPool ?? "[]") as string[];
+      if (pool.length > 1) {
+        const today = new Date();
+        const dayNumber = Math.floor(
+          Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) / 86400000,
+        );
+        image.src = pool[Math.abs(dayNumber) % pool.length];
+      }
+    } catch {
+      // Keep the server-rendered fallback if the photo pool cannot be read.
+    }
+  }
+</script>
+
+<style>
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 88vh;
+  gap: 1px;
+  background: var(--color-line);
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(2rem, 5vw, 5rem);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+}
+
+.panel-content,
+.photo-copy {
+  width: 100%;
+}
+
+.panel-content {
+  width: 100%;
+}
+
+.education {
+  background: var(--color-surface);
+}
+
+.photography {
+  background: var(--color-ink);
+  color: white;
+}
+
+.panel-content,
+.photo-copy,
+.photo-frame {
+  position: relative;
+  z-index: 1;
+}
+
+.background-mark {
+  position: absolute;
+  right: -0.04em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(14rem, 28vw, 30rem);
+  line-height: 0.7;
+  font-weight: 800;
+  letter-spacing: -0.09em;
+  color: rgba(29, 29, 29, 0.035);
+  user-select: none;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.76rem;
+  font-weight: 650;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(3.2rem, 6vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  max-width: 31rem;
+  font-size: clamp(1.1rem, 1.45vw, 1.3rem);
+  line-height: 1.55;
+}
+
+.lead {
+  margin: 0;
+}
+
+.teaching-note {
+  max-width: 29rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.teaching-note .note-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.teaching-note p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.panel-link {
+  display: inline-block;
+  margin-top: 3.75rem;
+  font-weight: 650;
+  font-size: 1rem;
+}
+
+.photo-copy {
+  margin-bottom: 2rem;
+}
+
+.photo-copy p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.photo-frame {
+  margin: 0;
+}
+
+.photo-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.panel:hover .photo-frame img {
+  transform: scale(1.012);
+  filter: contrast(1.03);
+}
+
+:global(.panel:focus-visible) {
+  outline: 3px solid currentColor;
+  outline-offset: -3px;
+}
+
+@media (max-width: 800px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    min-height: auto;
+  }
+
+  .background-mark {
+    font-size: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .photo-frame img {
+    transition: none;
+  }
+}
+</style>

@@ -1,0 +1,291 @@
+--- a/src/styles/tokens.css	2026-08-24 07:14:34.785997325 +0000
++++ b/src/styles/tokens.css	2026-08-24 07:34:19.445019872 +0000
+@@ -1,13 +1,19 @@
+ :root {
+-  /* Colors */
+-  --color-text: #222222;
+-  --color-bg: #fafafa;
++  /* Core palette: let Yumiko's photography provide the color. */
++  --color-text: #1d1d1d;
++  --color-bg: #f7f5f0;
++  --color-surface: #fffdf8;
++  --color-ink: #111111;
++  --color-muted: #6d6a64;
++  --color-line: rgba(29, 29, 29, 0.14);
++  --color-accent: #6b4a7f;
+ 
+-  --color-plum: #5d2e8c;
+-  --color-lavender: #c8b6ff;
+-  --color-pink: #ff7eb6;
+-  --color-yellow: #ffd84d;
+-  --color-seafoam: #7de2c5;
++  /* Reserved accents for future color photography/content. */
++  --color-plum: #6b4a7f;
++  --color-lavender: #d9d0e8;
++  --color-pink: #e9b8c8;
++  --color-yellow: #eee4b2;
++  --color-seafoam: #b8d9d0;
+ 
+   /* Spacing */
+   --space-1: 0.25rem;
+@@ -18,8 +24,11 @@
+   --space-6: 8rem;
+ 
+   /* Radius */
++  --radius-sm: 0.75rem;
++  --radius-md: 1.25rem;
++  --radius-lg: 2rem;
+   --radius-pill: 999px;
+ 
+   /* Animation */
+-  --transition: 200ms ease;
+-}
+\ No newline at end of file
++  --transition: 240ms ease;
++}
+--- a/src/components/SplitChoice.astro	2026-08-24 07:14:34.786258582 +0000
++++ b/src/components/SplitChoice.astro	2026-08-24 07:34:19.445824121 +0000
+@@ -1,125 +1,177 @@
+ ---
+----
+-<section class="split">
++import { photos } from "../data/photos";
+ 
++const photoPool = photos.map((photo) => photo.image);
++const firstPhoto = photoPool[0] ?? "/images/_11_0241.jpg";
++---
++<section class="split" aria-label="Yumiko's practices">
+   <a href="/education" class="panel education">
++    <span class="eyebrow">Inclusive Education</span>
+ 
+-    <span class="eyebrow">
+-      Inclusive Education
+-    </span>
+-
+-    <h2>
+-      Learning without fear.
+-    </h2>
++    <h2>Learning without fear.</h2>
+ 
+     <p>
+-      Workshops, presentations, and consulting that create space to ask questions, make mistakes, and grow.
++      Workshops, presentations, and consulting that create space to ask questions,
++      make mistakes, and grow.
+     </p>
+ 
++    <span class="panel-link">Explore education <span aria-hidden="true">↗</span></span>
+   </a>
+ 
+   <a href="/photography" class="panel photography">
+-
+-    <span class="eyebrow">
+-      Photography
+-    </span>
+-
+-<h2>
+-  Photography
+-</h2>
+-
+-<p>
+-  Film and digital photographs presented as an evolving collection of projects and moments.
+-</p>
+-<img
+-  src="/images/_11_0241.jpg"
+-/>
++    <div class="photo-copy">
++      <span class="eyebrow">Photography</span>
++      <h2>Photography</h2>
++      <p>
++        Film and digital photographs presented as an evolving collection of projects
++        and moments.
++      </p>
++    </div>
++
++    <figure class="photo-frame">
++      <img
++        id="daily-home-photo"
++        src={firstPhoto}
++        data-photo-pool={JSON.stringify(photoPool)}
++        alt="A photograph from Yumiko's collection"
++        loading="eager"
++      />
++      <figcaption>one photograph, changing daily</figcaption>
++    </figure>
+   </a>
+-
+ </section>
+ 
++<script>
++  const image = document.querySelector<HTMLImageElement>("#daily-home-photo");
++
++  if (image) {
++    try {
++      const pool = JSON.parse(image.dataset.photoPool ?? "[]") as string[];
++      if (pool.length > 1) {
++        const today = new Date();
++        const dayNumber = Math.floor(
++          Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) / 86400000,
++        );
++        image.src = pool[Math.abs(dayNumber) % pool.length];
++      }
++    } catch {
++      // Keep the server-rendered fallback if the photo pool cannot be read.
++    }
++  }
++</script>
++
+ <style>
+ .split {
+   display: grid;
+-  grid-template-columns: repeat(2, 1fr);
++  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+   min-height: 90vh;
+   gap: 1px;
++  background: var(--color-line);
+ }
+ 
+ .panel {
++  position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+-transition: filter 200ms ease;
+-  padding: 5rem;
+-
++  min-width: 0;
++  padding: clamp(2rem, 5vw, 5rem);
+   text-decoration: none;
+-
+   color: inherit;
+-
+-  transition:
+-    transform .3s ease,
+-    background .3s ease;
++  overflow: hidden;
++  transition: transform 0.3s ease, background 0.3s ease;
+ }
+ 
+ .panel:hover {
+-  transform: scale(1.02);
++  transform: translateY(-4px);
+ }
+ 
+ .education {
+-  background: #fff4bf;
++  background: var(--color-surface);
+ }
+ 
+ .photography {
+-  background: #111;
++  background: var(--color-ink);
+   color: white;
+ }
+ 
+-.photography img {
+-  width: 100%;
+-  margin-top: auto;
+-
+-  aspect-ratio: 4 / 5;
+-
+-  object-fit: cover;
+-
+-  border-radius: 1rem;
+-
+-  box-shadow:
+-    0 24px 60px rgba(0,0,0,.35);
+-}
+-
+ .eyebrow {
+   text-transform: uppercase;
+-  letter-spacing: .15em;
+-  font-size: .8rem;
+-
++  letter-spacing: 0.15em;
++  font-size: 0.78rem;
++  font-weight: 650;
+   margin-bottom: 1rem;
+ }
+ 
+ h2 {
+-  font-size: clamp(3rem, 7vw, 5rem);
+-  line-height: .95;
+-
++  font-size: clamp(3rem, 6vw, 5.5rem);
++  line-height: 0.95;
++  letter-spacing: -0.045em;
+   margin-bottom: 1.5rem;
+ }
+ 
+ p {
+-  max-width: 28rem;
+-  font-size: 1.25rem;
++  max-width: 31rem;
++  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
++  line-height: 1.55;
+ }
+-.panel:hover {
+-  filter: brightness(1.04);
++
++.panel-link {
++  margin-top: 2.5rem;
++  font-weight: 650;
++  font-size: 1rem;
++}
++
++.photo-copy {
++  margin-bottom: 2rem;
++}
++
++.photo-frame {
++  margin: 0;
++  position: relative;
++}
++
++.photo-frame img {
++  width: 100%;
++  aspect-ratio: 4 / 5;
++  object-fit: cover;
++  display: block;
++  border-radius: var(--radius-lg);
++  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
++  transition: transform 0.5s ease;
++}
++
++.panel:hover .photo-frame img {
++  transform: scale(1.012);
++}
++
++figcaption {
++  margin-top: 0.75rem;
++  color: rgba(255, 255, 255, 0.58);
++  font-size: 0.75rem;
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
+ }
+ 
+-.panel:focus-visible {
++:global(.panel:focus-visible) {
+   outline: 3px solid currentColor;
+   outline-offset: -3px;
+ }
+ 
+-@media (prefers-reduced-motion: reduce) {
++@media (max-width: 800px) {
++  .split {
++    grid-template-columns: 1fr;
++  }
++
+   .panel {
++    min-height: auto;
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  .panel,
++  .photo-frame img {
+     transition: none;
+   }
+ }
+-</style>
+\ No newline at end of file
++</style>

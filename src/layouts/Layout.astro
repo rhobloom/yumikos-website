@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Yumiko" } = Astro.props;
+---
+
+<Fragment>
+
+  <title>{title}</title>
+
+  <Navigation />
+
+  <slot />
+ <footer class="site-footer">
+  <a
+    href="https://rhobloom.art"
+    class="footer-link"
+    aria-label="Website designed by rhobloom"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/images/rhobloom-v2.svg"
+      alt="rhobloom"
+      class="footer-mark"
+    />
+  </a>
+</footer>
+
+<style>
+.site-footer {
+  max-width: 1100px;
+
+  margin: 8rem auto 2rem;
+
+  padding: 0 2rem;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-link {
+  display: inline-block;
+}
+
+.footer-mark {
+  width: 180px;
+  height: auto;
+
+  opacity: .55;
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease;
+}
+
+.footer-mark:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+</style>
+
+</Fragment>

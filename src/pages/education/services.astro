@@ -1,0 +1,205 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Education Services | Yumiko">
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">02 / inclusive education</span>
+      <h1>Ways to<br /><em>work together.</em></h1>
+      <p class="intro">
+        Thoughtful, practical gender education for organizations, teams, classrooms,
+        and communities who want to understand more and do better.
+      </p>
+    </header>
+
+    <section class="services">
+      <article class="service">
+        <span class="number">01</span>
+        <div>
+          <span class="label">Speaking</span>
+          <h2>Make room for a different perspective.</h2>
+          <p>
+            Keynotes, panels, guest lectures, and presentations grounded in lived
+            experience and designed to make complicated subjects easier to approach.
+          </p>
+          <p>
+            Talks can be adapted for workplaces, schools, nonprofits, community
+            organizations, and public events.
+          </p>
+        </div>
+      </article>
+
+      <article class="service">
+        <span class="number">02</span>
+        <div>
+          <span class="label">Workshops</span>
+          <h2>Learn by doing.</h2>
+          <p>
+            Interactive sessions give participants space to ask questions, practice
+            language, work through uncertainty, and build confidence.
+          </p>
+          <p>
+            Workshops can be tailored to the experience level, goals, and needs of
+            a particular group.
+          </p>
+        </div>
+      </article>
+
+      <article class="service">
+        <span class="number">03</span>
+        <div>
+          <span class="label">Consulting</span>
+          <h2>Turn good intentions into everyday practice.</h2>
+          <p>
+            Guidance for organizations working through inclusive communication,
+            policies, workplace culture, and the practical questions that arise
+            when an organization wants to become more welcoming.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <section class="closing">
+      <span class="eyebrow">03 / start a conversation</span>
+      <h2>Not sure what<br /><em>you need?</em></h2>
+      <p>
+        That's okay. Tell Yumiko a little about your group, your goals, and what
+        you're trying to figure out. The right format can be worked out together.
+      </p>
+      <a class="button" href="/contact">Get in touch <span class="arrow"></span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+.hero {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 0;
+}
+
+.eyebrow,
+.label {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.hero h1 {
+  margin: 2rem 0 3rem;
+  max-width: 10ch;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: .84;
+  letter-spacing: -.075em;
+}
+
+.hero h1 em,
+.closing h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.intro {
+  max-width: 38rem;
+  margin: 0 0 0 auto;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.55;
+}
+
+.services {
+  border-top: 1px solid var(--color-line);
+}
+
+.service {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 3rem;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.number {
+  color: var(--color-muted);
+  font-size: .75rem;
+  letter-spacing: .12em;
+}
+
+.service > div {
+  max-width: 58rem;
+}
+
+.service h2 {
+  max-width: 14ch;
+  margin: 1rem 0 2rem;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: .92;
+  letter-spacing: -.06em;
+}
+
+.service p {
+  max-width: 43rem;
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.closing {
+  padding: 9rem 0 3rem;
+  max-width: 52rem;
+}
+
+.closing h2 {
+  margin: 2rem 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.closing p {
+  max-width: 38rem;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: white;
+  font-weight: 700;
+}
+
+.arrow {
+  width: 1rem;
+  height: .8rem;
+  display: inline-block;
+  background: currentColor;
+  clip-path: polygon(0 43%,68% 43%,68% 8%,100% 50%,68% 92%,68% 57%,0 57%);
+}
+
+@media (max-width: 700px) {
+  .service {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .intro {
+    margin-left: 0;
+  }
+}
+</style>

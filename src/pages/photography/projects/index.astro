@@ -1,0 +1,183 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { projects } from "../../../data/projects";
+---
+
+<Layout title="Photography Projects | Yumiko">
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">02 / photography</span>
+      <h1>Projects,<br /><em>collected.</em></h1>
+      <p>
+        Photographs gathered into bodies of work, each with its own atmosphere,
+        questions, and way of seeing.
+      </p>
+    </header>
+
+    <section class="projects">
+      {projects.map((project, index) => (
+        <a class="project" href={`/photography/${project.slug}`}>
+          <div class="project-image">
+            <img src={project.images[0]} alt={project.title} loading="lazy" />
+          </div>
+          <div class="project-meta">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h2>{project.title}</h2>
+              <p>{project.description}</p>
+              <span class="enter">View project <span class="arrow"></span></span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <section class="closing">
+      <span class="eyebrow">03 / commissions</span>
+      <h2>Have a project<br /><em>in mind?</em></h2>
+      <a href="/contact">Get in touch <span class="arrow"></span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+.hero {
+  min-height: 68vh;
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.hero h1 {
+  margin: 2rem 0 3rem;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  line-height: .84;
+  letter-spacing: -.075em;
+}
+
+.hero h1 em,
+.closing h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+.projects {
+  display: grid;
+  gap: 7rem;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.project:nth-child(even) {
+  grid-template-columns: minmax(18rem, .75fr) minmax(0, 1.25fr);
+}
+
+.project:nth-child(even) .project-image {
+  order: 2;
+}
+
+.project-image {
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.project-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.project:hover img {
+  transform: scale(1.02);
+}
+
+.project-meta > span {
+  color: var(--color-muted);
+  font-size: .75rem;
+  letter-spacing: .12em;
+}
+
+.project-meta h2 {
+  margin: 1rem 0;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: .9;
+  letter-spacing: -.06em;
+}
+
+.project-meta p {
+  max-width: 30rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.enter {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.arrow {
+  width: 1rem;
+  height: .8rem;
+  display: inline-block;
+  background: currentColor;
+  clip-path: polygon(0 43%,68% 43%,68% 8%,100% 50%,68% 92%,68% 57%,0 57%);
+}
+
+.closing {
+  padding: 10rem 0 2rem;
+}
+
+.closing h2 {
+  margin: 2rem 0;
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.closing a {
+  font-weight: 700;
+}
+
+@media (max-width: 750px) {
+  .project,
+  .project:nth-child(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .project:nth-child(even) .project-image {
+    order: 0;
+  }
+}
+</style>

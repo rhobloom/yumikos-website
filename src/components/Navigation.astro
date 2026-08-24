@@ -1,0 +1,171 @@
+---
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+import { navigation } from "../data/navigation";
+---
+
+<header>
+  <Container>
+
+    <nav class="nav">
+
+      <a href="/" class="brand">
+        Yumiko
+      </a>
+
+<div class="links">
+
+  {navigation.map((item) => (
+
+    <div class="nav-item">
+
+      {item.children ? (
+
+        <>
+          <a href={item.href}>
+            {item.label}
+          </a>
+
+          <div class="dropdown">
+
+            {item.children.map((child) => (
+
+              <a href={child.href}>
+                {child.label}
+              </a>
+
+            ))}
+
+          </div>
+        </>
+
+      ) : item.label === "Contact" ? (
+
+        <Button
+          href={item.href}
+          variant="secondary"
+        >
+          {item.label}
+        </Button>
+
+      ) : (
+
+        <a href={item.href}>
+          {item.label}
+        </a>
+
+      )}
+
+    </div>
+
+  ))}
+
+</div>
+
+    </nav>
+
+  </Container>
+</header>
+
+<style>
+header {
+  position: sticky;
+  top: 0;
+
+  background: var(--color-bg);
+
+  border-bottom: 1px solid #ececec;
+
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 5rem;
+}
+
+.brand {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  height: 5rem;
+}
+
+.links a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: var(--color-plum);
+}
+
+.dropdown {
+  position: absolute;
+
+  top: 100%;
+  left: 50%;
+
+  transform: translate(-50%, 8px);
+
+  min-width: 220px;
+
+  background: white;
+
+  border: 1px solid #ececec;
+  border-radius: .5rem;
+
+  box-shadow: 0 12px 32px rgba(0,0,0,.08);
+
+  padding: .5rem 0;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease;
+
+  z-index: 1000;
+}
+
+.nav-item:hover .dropdown,
+.nav-item:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translate(-50%, 0);
+}
+
+.dropdown a {
+  display: block;
+
+  padding: .6rem 1rem;
+
+  white-space: nowrap;
+}
+
+.dropdown a:hover {
+  background: #f8f8f8;
+}
+</style>
