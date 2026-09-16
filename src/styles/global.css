@@ -180,3 +180,26 @@ a {
   );
 }
 
+
+/* Shared usability: retain the existing page compositions. */
+img { max-width: 100%; }
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
+#page-content { scroll-margin-top: 6rem; }
+.skip-link { position: fixed; top: .5rem; left: .5rem; z-index: 2000; padding: .75rem 1rem; background: var(--color-surface); transform: translateY(-150%); }
+.skip-link:focus { transform: none; }
+p a { text-decoration: underline; text-underline-offset: .2em; }
+h1, h2, h3, p { overflow-wrap: anywhere; }
+.thumbnails { padding: 5px; }
+button.thumbnail { border: 0; padding: 0; background: transparent; min-height: 44px; }
+.thumbnail img { display: block; width: 100%; height: auto; border-radius: inherit; }
+@media (max-width: 600px) {
+  p { font-size: 1.125rem; }
+  h1 { font-size: clamp(2.25rem, 9vw, 3.5rem); }
+  #page-content .hero h1, #page-content .education-hero h1 { font-size: clamp(2.75rem, 11vw, 4.5rem); line-height: 1; }
+  #page-content .direct h2, #page-content .closing h2 { font-size: clamp(2.5rem, 10vw, 3.5rem); line-height: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
