@@ -9,13 +9,19 @@ interface Props {
 const { title = "Yumiko" } = Astro.props;
 ---
 
-<Fragment>
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
+</head>
+<body>
+  <a class="skip-link" href="#page-content">Skip to content</a>
 
   <Navigation />
 
-  <slot />
+  <div id="page-content" tabindex="-1"><slot /></div>
  <footer class="site-footer">
   <a
     href="https://rhobloom.art"
@@ -65,4 +71,5 @@ const { title = "Yumiko" } = Astro.props;
 }
 </style>
 
-</Fragment>
+</body>
+</html>
